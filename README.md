@@ -6,4 +6,6 @@
 
   Referenced from https://github.com/Sotalbireo/yuki.n-ready   Let's make the world lively!
 
-![Uploading SOS.jpg…]()
+![SOS](https://github.com/user-attachments/assets/04c34a2a-6f81-4696-b410-2a6afd7e7849)
+
+  
