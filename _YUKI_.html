@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang='ja'>
+<head>
+    <meta content='IE=edge' http-equiv='X-UA-Compatible'>
+    <meta charset='utf-8'>
+    <meta name="generator" content="?????? HP EDITOR -1.1">
+    <meta content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scaleable=no' name='viewpoint'>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <title>世界を大いに盛り上げるための凉宫ハルヒの団</title>
+    <style>
+        * { margin: 0; border: 0; padding: 0; line-height: 1.5; }
+        html { width: 100%; min-width: 640px; max-width: 1024px; margin: 30px auto 0; font-size: 20px; }
+        body, input { background: #404050; color: #fff; margin: 0 40px; font-family: monospace; --webkit-text-size-adjust: 100%; }
+        input { color: #404050; display: inline-block; width: 18px; border-radius: 0; font-size: 20px; margin: 0; line-height: 1; }
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        input:focus { outline: none; }
+        span { display: inline-block; white-space: normal; }
+        div { white-space: nowrap; margin: 0 0 30px; }
+        div:before { content: "YUKI.N> "; vertical-align: top; }
+        .caret:after { content: "_"; }
+        .border { border-bottom: 1px solid #fff; }
+        .sp .border { border-bottom-width: 2px; vertical-align: baseline; }
+        html.sp { width: 100%; min-width: 320px; }
+        .sp body { margin: 20px 40px 0; }
+        .sp body, .sp input { font-size: 32px; }
+        .sp input { width: 24px; }
+        .sp span { margin: 0 0 10px; }
+        .ok { background: #fff; color: #333; text-align: center; font-family: sans-serif; }
+        .yet { background: #c6e0fb; color: #72b5f8; }
+        .nf404 { background: #fff; color: #000; font-family: serif; text-align: center; }
+        .sp .nf404 { width: 640px; margin: 0 auto; }
+        h1 { font-weight: 700; margin: 0 auto 20px; }
+        hr { height: 1px; width: 80%; border-top: 2px solid #000; margin: 0 auto 20px; }
+        a { color: #333; text-decoration: none; }
+        .sml { font-size: 80%; }
+        #fullscreenBtn {
+            margin: 20px;
+            padding: 10px 15px;
+            background-color: #ffcc00; 
+            color: black; 
+            border: none; 
+            cursor: pointer;
+            font-size: 16px; 
+        }
+    </style>
+</head>
+<body>
+        <audio id="bgMusic" loop="loop">
+            <source src="冒険でしょでしょ- (涼宮ハルヒの憂鬱).mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+	<button onclick="document.getElementById('bgMusic').play()">音楽</button>
+    <button id="fullscreenBtn">全画面モードに切り替え</button>
+    <main id='main'></main>
+    <script type="text/javascript">
+        var b = document.getElementsByTagName('body')[0],
+            d = document.getElementById('main'),
+            div = "<div><span></span></div>\n",
+            msg = [
+                "これをあなたが読んでいる時、",
+                "わたしはわたしではないだろう。",
+                "",
+                "このメッセージが表示されたということは、",
+                "そこにはあなた、わたし、涼宮ハルヒ、朝比奈みくる、",
+                "古泉一樹が存在しているはずである。",
+                "",
+                "それが鍵。",
+                "あなたは解答を見つけ出した。",
+                "",
+                "",
+                "",
+                "",
+                "これは緊急脱出プログラムである。",
+                "BR",
+                "起動させる場合はエンターキーを、",
+                "そうでない場合はそれ以外のキーを選択せよ。",
+                "",
+                "起動させた場合、",
+                "あなたは時空修正の機会を得る。",
+                "ただし成功は保障できない。",
+                "また帰還の保障もできない。",
+                "",
+                "このプログラムが起動するのは一度きりである。",
+                "実行ののち、消去される。",
+                "BR",
+                "非実行が選択された場合は起動せずに消去される。",
+                "",
+                "",
+                "",
+                "EOT",
+                "Ｒｅａｄｙ？"
+            ],
+            i_div = (-1),
+            i_msg = 0,
+            canType = false,
+            typeSpeed = 60,
+            delayTime = 800;
+
+        var ua = navigator.userAgent;
+        if (/iPhone/.test(ua) || /iPod/.test(ua) || /Android/.test(ua))
+            document.getElementsByTagName('html')[0].classList.add('sp');
+        if (document.addEventListener) {
+            document.addEventListener('gesturestart', function (e) { e.preventDefault(); }, false);
+        } else if (document.attachEvent) {
+            document.attachEvent('gesturestart', function (e) { e.preventDefault(); });
+        }
+
+        setTimeout("Main()", 4500);
+        if (document.addEventListener) {
+            document.addEventListener("keydown", isEnter);
+        } else if (document.attachEvent) {
+            document.attachEvent("onkeydown", isEnter);
+        }
+
+        // 全画面切換ボタン
+        document.getElementById('fullscreenBtn').addEventListener('click', toggleFullScreen);
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.error(`全画面表示できませんでした: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // ESCキーで全画面を終了する
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                }
+            }
+        });
+
+        function Main() {
+            yuki(0, msg[0], msg[0].length, d, true);
+        }
+
+        function yuki(i, str, len, targ, createDiv) {
+            var k = 0;
+            window.scrollBy(0, 40);
+            if (len === 0) {
+                i++;
+                targ.classList.remove("caret");
+                setTimeout(function () { yuki(i, msg[i], msg[i].length, targ, true) }, delayTime);
+            } else if (msg[i] === 'EOT') {
+                targ.classList.remove("caret");
+                clearInterval(typingWord); typingWord = null;
+                ready(++i);
+            } else if (msg[i] === 'BR') {
+                i++;
+                targ.innerHTML += "<br>\n";
+                setTimeout(function () { yuki(i, msg[i], msg[i].length, targ, false) }, delayTime);
+                clearInterval(typingWord); typingWord = null;
+            } else if (createDiv) {
+                d.innerHTML += div;
+                targ = d.getElementsByTagName('span')[++i_div];
+                targ.classList.add('caret');
+                createDiv = false;
+                setTimeout(function () { yuki(i, msg[i], msg[i].length, targ, false) }, delayTime);
+                clearInterval(typingWord); typingWord = null;
+            } else {
+                var typingWord = setInterval(function () {
+                    if (k >= len) {
+                        clearInterval(typingWord);
+                        targ.innerHTML += "<br>\n";
+                        window.scrollBy(0, 40);
+                        i++;
+                        typingWord = null;
+                        yuki(i, msg[i], msg[i].length, targ, false);
+                    } else {
+                        targ.innerHTML += str.substr(k++, 1);
+                    };
+                }, typeSpeed);
+            }
+        }
+
+        function ready(i) {
+            d.innerHTML += "<span></span><input type='text' autocorrect='off' autocomplete='off' autofocus>";
+            var span = d.getElementsByTagName('span')[++i_div],
+                input = d.getElementsByTagName('input')[0],
+                input2 = setInterval(function () {
+                    input.classList.toggle('border');
+                }, 600);
+
+            window.scrollBy(0, 40);
+            var k = 0,
+                len = msg[i].length,
+                ask = setInterval(function () {
+                    if (k >= len) {
+                        span.innerHTML += '&nbsp;';
+                        clearInterval(ask); ask = null;
+                    } else {
+                        span.innerHTML += msg[i].substr(k++, 1);
+                    }
+                }, 1000 / 3);
+
+            input.focus(); canType = true;
+        }
+
+        function isEnter(event) {
+            if (!canType) return false;
+            var key = event.keyCode || event.which;
+            answer(key === 13);
+        }
+
+        function answer(say) {
+            canType = false;
+            d.innerHTML = '';
+            window.scrollTo(0, 0);
+
+            if (say) {
+                b.classList.add('ok');
+                setTimeout(function () {
+                    d.innerHTML += "<p>「7月7日    月曜日」</p>\n<p><a href='https://dm.dqsj.top/?url=DL-EB02A2DB7477AF9D73F8EFA2D64BC3083F3D2C7EFEE7F7A5CC1031E01DE9C1777FC88FDB5EE96DF789CCCBAEABD7DA' class='sml'>&copy; 2004,2010 \"The Disappearance of Haruhi Suzumiya\"</a></p>\n";
+                }, 1000);
+            } else {
+                b.classList.add('yet');
+                d.innerHTML += "<p>また、図書館に</p>";
+                setTimeout(notFound, 3000);
+            }
+        }
+
+        function notFound() {
+            b.innerHTML = ''; b.classList.remove('yet');
+            b.classList.add('nf404');
+            setTimeout(function () {
+                b.innerHTML = "<h1>404 Not found.</h1>\n<hr>\n<p><a href='https://dm.dqsj.top/?url=DL-EB02A2DB7477AF9D73F8EFA2D64BC3083F3D2C7EFEE7F7A5CC1031E01DE9C1777FC88FDB5EE96DF789CCCBAEABD7DA' class='sml'>&copy; 2004,2010 \"The Disappearance of Haruhi Suzumiya\"</a></p>\n";
+            }, 750);
+        }
+    </script>
+</body>
+</html>
